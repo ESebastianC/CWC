@@ -1,9 +1,10 @@
-"use client"
+"use client"   // 👈 asegúrate que esté arriba de todo
 
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa"
 import { FaUserCircle } from "react-icons/fa"
+import Image from "next/image"
 
 export default function Home() {
   return (
@@ -11,6 +12,23 @@ export default function Home() {
       {/* HERO */}
       <section className="relative flex flex-col items-center justify-center text-center py-24 px-6 bg-[url('https://www.wwe.com/sites/default/files/2021/hero.jpg')] bg-cover bg-center rounded-2xl shadow-2xl overflow-hidden">
         <div className="absolute inset-0 bg-black/70 rounded-2xl" />
+
+        {/* 👇 IMAGEN DEL RING (atrás del texto) */}
+      <motion.div
+  className="absolute inset-0 flex items-center justify-center z-0"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 0.25 }}
+  transition={{ duration: 1.2 }}
+>
+  <Image
+    src="/img1.png"
+    alt="Ring CWC"
+    fill
+    className="object-cover pointer-events-none"  // 👈 este es el truco
+    priority
+  />
+</motion.div>
+
 
         {/* ANIMACIÓN DE LUCHADORES */}
         <motion.img

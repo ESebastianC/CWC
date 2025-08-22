@@ -3,7 +3,7 @@ import "./globals.css"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "CWC - Consejo de Wrestling Central",
+  title: "CWC - Chaos Wrestling Championship",
   description: "La nueva era de la lucha libre profesional.",
 }
 
@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               CWC
             </Link>
             <div className="flex items-center gap-6 text-sm uppercase font-semibold">
-              <Link href="/" className="hover:text-red-500">Historia</Link>
+              <Link href="/" className="hover:text-red-500">Inicio</Link>
               <Link href="/luchadores" className="hover:text-red-500">Luchadores</Link>
               <Link href="/eventos" className="hover:text-red-500">Eventos</Link>
               <Link href="/contacto" className="hover:text-red-500">Contacto</Link>
