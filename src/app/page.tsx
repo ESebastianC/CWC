@@ -5,49 +5,62 @@ import { motion } from "framer-motion"
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa"
 import { FaUserCircle } from "react-icons/fa"
 import Image from "next/image"
+import { useState } from "react"
+
 
 export default function Home() {
+  const [flags, setFlags] = useState<number[]>([])
+
+  const addFlags = () => {
+    const newFlags = Array.from({ length: 10 }, (_, i) => Date.now() + i)
+    setFlags((prev) => [...prev, ...newFlags])
+  }
+
   return (
     <div className="space-y-20">
       {/* HERO */}
-      <section className="relative flex flex-col items-center justify-center text-center py-24 px-6 bg-[url('https://www.wwe.com/sites/default/files/2021/hero.jpg')] bg-cover bg-center rounded-2xl shadow-2xl overflow-hidden">
+      <section className="relative flex flex-col items-center justify-center text-center py-24 px-6 bg-black rounded-2xl shadow-2xl overflow-hidden">
         <div className="absolute inset-0 bg-black/70 rounded-2xl" />
 
-        {/* 👇 IMAGEN DEL RING (atrás del texto) */}
-      <motion.div
-  className="absolute inset-0 flex items-center justify-center z-0"
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 0.25 }}
-  transition={{ duration: 1.2 }}
->
-  <Image
-    src="/img1.png"
-    alt="Ring CWC"
-    fill
-    className="object-cover pointer-events-none"  // 👈 este es el truco
-    priority
-  />
-</motion.div>
-
-
-        {/* ANIMACIÓN DE LUCHADORES */}
-        <motion.img
-          src="https://media.tenor.com/fLh7sPHv0F0AAAAi/wrestling-wwe.gif"
-          alt="Luchadores animados"
-          className="absolute bottom-4 left-6 w-32 md:w-40 rounded-lg shadow-lg"
-          initial={{ x: -200, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
+        {/* 👇 RING */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center z-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.25 }}
           transition={{ duration: 1.2 }}
-        />
+        >
+          <Image
+            src="/img1.png"
+            alt="Ring CWC"
+            fill
+            className="object-cover"
+            priority
+          />
+        </motion.div>
 
-        <motion.img
-          src="https://media.tenor.com/4V4qLJ3CXqUAAAAi/undertaker-wwe.gif"
-          alt="Luchador animado"
-          className="absolute bottom-4 right-6 w-32 md:w-40 rounded-lg shadow-lg"
-          initial={{ x: 200, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.5 }}
-        />
+        {/* 🎌 BANDERAS ECUADOR */}
+        {flags.map((id) => (
+          <motion.div
+            key={id}
+            className="absolute"
+            style={{
+              left: `${Math.random() * 90 + 5}%`,
+              top: "80%",
+            }}
+            initial={{ y: 0, opacity: 1, scale: 0.6 }}
+            animate={{ y: -600, opacity: 0, scale: 1.2 }}
+            transition={{
+              duration: 4 + Math.random() * 2,
+            }}
+          >
+            <Image
+              src="/ecuador.png"
+              alt="Bandera Ecuador"
+              width={40}
+              height={25}
+            />
+          </motion.div>
+        ))}
 
         {/* TEXTO PRINCIPAL */}
         <div className="relative z-10 max-w-3xl">
@@ -65,8 +78,7 @@ export default function Home() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            Una marca de lucha libre profesional hecha en Ecuador, con el objetivo de revolucionar el
-            espectáculo y dar oportunidades a nuevos talentos.
+            Una marca de lucha libre profesional hecha en Ecuador, con el objetivo de revolucionar el espectáculo y dar oportunidades a nuevos talentos.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -77,12 +89,15 @@ export default function Home() {
               whileHover={{ scale: 1.1, boxShadow: "0px 0px 12px rgba(255,0,0,0.6)" }}
               whileTap={{ scale: 0.95 }}
               className="mt-6 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl shadow-lg"
+              onClick={addFlags}
             >
-              Conoce nuestra historia
+              ECUADOR
             </motion.button>
           </motion.div>
         </div>
       </section>
+
+
 
       {/* HISTORIA */}
       <section className="max-w-4xl mx-auto text-center space-y-6">
