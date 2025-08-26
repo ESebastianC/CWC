@@ -467,7 +467,8 @@ function SidePlate({ x, color, shape, metalness, roughness }: { x: number; color
   }, [shape])
 
   return (
-    <mesh geometry={geom as any} position={[x, 0.02, 0]} rotation={[0, 0, 0]} castShadow receiveShadow>
+  <mesh geometry={geom as THREE.BufferGeometry | THREE.ExtrudeGeometry} position={[x, 0.02, 0]} rotation={[0, 0, 0]} castShadow receiveShadow>
+
       <meshStandardMaterial color={color} metalness={metalness} roughness={roughness} envMapIntensity={1.2} />
     </mesh>
   )
