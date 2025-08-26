@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import MiniGame from "@/components/ui/MiniGame" 
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa"
 import { FaUserCircle } from "react-icons/fa"
 import Image from "next/image"
@@ -225,7 +226,10 @@ export default function Home() {
     ))}
   </div>
 </section>
-
+{/* MINI JUEGO */}
+<section className="bg-gray-900 text-white py-12 px-6 rounded-2xl shadow-2xl max-w-4xl mx-auto">
+  <MiniGame />
+</section>
 
       {/* FORMULARIO */}
       <section className="bg-gray-50 p-10 rounded-2xl shadow-xl max-w-3xl mx-auto">
