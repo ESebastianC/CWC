@@ -98,7 +98,7 @@ export default function BeltDesigner3D() {
       setSidePlateShape(p.sidePlateShape ?? sidePlateShape)
       setStickerSet(p.stickerSet ?? [])
       setLogoUrl(p.logoUrl ?? null)
-    } catch (err) {
+    } catch {
       alert("No se pudo cargar el preset :(")
     } finally {
       setLoading(false)
@@ -611,6 +611,21 @@ function makeStickerGeometry(type: StickerType) {
   s.lineTo(-0.5, -0.2)
   return new THREE.ExtrudeGeometry(s, { depth, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: 0.02, bevelThickness: 0.03 })
 }
+type Preset = {
+  strapColor?: string
+  plateColor?: string
+  sidePlateColor?: string
+  metalness?: number
+  roughness?: number
+  text?: string
+  textSize?: number
+  textDepth?: number
+  strapWidth?: number
+  sidePlateShape?: "circle" | "hex" | "shield"
+  stickerSet?: Sticker[]
+  logoUrl?: string | null
+}
+
 
 /******************** utilidades ********************/
 function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number) {
